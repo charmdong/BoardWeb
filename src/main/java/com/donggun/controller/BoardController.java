@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.donggun.board.domain.Board;
+import com.donggun.board.domain.Search;
 import com.donggun.board.security.SecurityUser;
 import com.donggun.board.service.BoardService;
 
@@ -25,8 +26,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/getBoardList")
-	public String getBoardList(Model model, Board board) {
-		Page<Board> boardList = boardService.getBoardList(board);
+	public String getBoardList(Model model, Search search) {
+		if(search.getSearchCondition() == null) {
+			search.setSearchCondition("TITLE");
+		}
+		
+		if(search.getSearchKeyword() == null) {
+			search.setSearchKeyword("");
+		}
+		
+		Page<Board> boardList = boardService.getBoardList(search);
 		
 		model.addAttribute("boardList", boardList);
 		

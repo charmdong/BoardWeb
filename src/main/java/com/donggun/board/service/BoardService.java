@@ -3,6 +3,7 @@ package com.donggun.board.service;
 import org.springframework.data.domain.Page;
 
 import com.donggun.board.domain.Board;
+import com.donggun.board.domain.Search;
 
 public interface BoardService {
 
@@ -14,6 +15,6 @@ public interface BoardService {
 
 	Board getBoard(Board board);
 
-	Page<Board> getBoardList(Board board);
+	Page<Board> getBoardList(Search search);
 
 }
