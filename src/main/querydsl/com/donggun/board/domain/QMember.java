@@ -22,6 +22,8 @@ public class QMember extends EntityPathBase<Member> {
 
     public final ListPath<Board, QBoard> boardList = this.<Board, QBoard>createList("boardList", Board.class, QBoard.class, PathInits.DIRECT2);
 
+    public final ListPath<Comment, QComment> commentList = this.<Comment, QComment>createList("commentList", Comment.class, QComment.class, PathInits.DIRECT2);
+
     public final BooleanPath enabled = createBoolean("enabled");
 
     public final StringPath id = createString("id");

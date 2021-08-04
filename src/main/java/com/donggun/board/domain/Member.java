@@ -17,7 +17,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = "boardList")
+@ToString(exclude = {"boardList", "commentList"})
 @Entity
 public class Member {
 
@@ -36,4 +36,7 @@ public class Member {
 
 	@OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
 	private List<Board> boardList = new ArrayList<Board>();
+	
+	@OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
+	private List<Comment> commentList = new ArrayList<Comment>();
 }
