@@ -39,6 +39,22 @@
 			</tr>
 		</table>
 	</form>
+	
+	<!-- 댓글 -->
+	<table th:align="center" border="1" th:cellpadding="0"
+		th:cellspacing="0" th:width="700">
+		<tr th:each="comment, state : ${board.commentList}">
+			<td th:text="${comment.member.name}" th:align="center" />
+			<td th:text="${comment.content}" th:align="center" />
+			<td th:text="${#dates.format(comment.createDate, 'yyyy-MM-dd')}"
+				th:align="center" />
+			<td th:text="${comment.cnt}" th:align="center" />
+		</tr>
+	</table>
+	<form th:action="@{/board/insertComment}" method="post" th:width="700">
+		<input th:type="text" /><button th:type="submit">등록</button>
+	</form>
+	
 	<a th:href="@{/board/insertBoard}">등록</a>&nbsp;&nbsp;&nbsp;
 	<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/board/deleteBoard(seq=${board.seq})}">글 삭제</a>&nbsp;&nbsp;&nbsp;
 	<a th:href="@{/board/getBoardList}">목록</a>
