@@ -1,4 +1,4 @@
-package com.donggun.controller;
+package com.donggun.board.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

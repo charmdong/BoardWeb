@@ -1,4 +1,4 @@
-package com.donggun.controller;
+package com.donggun.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
