@@ -49,6 +49,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
+	public Board getBoardBySeq(Long seq) {
+		return boardRepo.findById(seq).get();
+	}
+
+	@Override
 	public Page<Board> getBoardList(Search search) {
 		BooleanBuilder builder = new BooleanBuilder();
 		

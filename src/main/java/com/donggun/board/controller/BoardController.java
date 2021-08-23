@@ -6,6 +6,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -49,6 +50,23 @@ public class BoardController {
 		model.addAttribute("board", findBoard);
 		
 		return "board/getBoard";
+	}
+	
+	@GetMapping(value = "/boards/{seq}")
+	public String getBoardBySeq(@PathVariable Long seq, Board board, Model model) {
+		Board findBoard = boardService.getBoardBySeq(seq);
+		
+		model.addAttribute("board", findBoard);
+		
+		return "board/getBoard";
+	}
+	
+	@PostMapping(value = "/boards")
+	public String registBoard(Board board, @AuthenticationPrincipal SecurityUser principal) {
+		board.setMember(principal.getMember());
+		boardService.insertBoard(board);
+		
+		return "redirect:getBoardList";
 	}
 	
 	@GetMapping(value = "/insertBoard")

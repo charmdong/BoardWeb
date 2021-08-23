@@ -14,6 +14,8 @@ public interface BoardService {
 	void deleteBoard(Board board);
 
 	Board getBoard(Board board);
+	
+	Board getBoardBySeq(Long seq);
 
 	Page<Board> getBoardList(Search search);
 
