@@ -2,6 +2,7 @@ package com.donggun.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.donggun.board.domain.Board;
 import com.donggun.board.domain.Search;
@@ -75,6 +77,7 @@ public class BoardController {
 	}
 	
 	@PostMapping(value = "/insertBoard") 
+	@ResponseStatus(code = HttpStatus.FOUND)
 	public String insertBoard(Board board, @AuthenticationPrincipal SecurityUser principal) {
 		board.setMember(principal.getMember());
 		boardService.insertBoard(board);
