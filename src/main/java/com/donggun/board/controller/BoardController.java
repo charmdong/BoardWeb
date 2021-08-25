@@ -98,4 +98,11 @@ public class BoardController {
 		
 		return "forward:getBoardList";
 	}
+	
+	@PostMapping(value = "/boards/{boardNo}/delete")
+	public String deleteBoardByNo(Board board) {
+		boardService.deleteBoard(board);
+	
+		return "forward:getBoardList";
+	}
 }
