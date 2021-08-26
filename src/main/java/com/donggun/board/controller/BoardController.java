@@ -18,7 +18,7 @@ import com.donggun.board.security.SecurityUser;
 import com.donggun.board.service.BoardService;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/boards")
 public class BoardController {
 
 	private final BoardService boardService;
@@ -54,7 +54,7 @@ public class BoardController {
 		return "board/getBoard";
 	}
 	
-	@GetMapping(value = "/boards/{seq}")
+	@GetMapping(value = "/{seq}")
 	public String getBoardBySeq(@PathVariable Long seq, Board board, Model model) {
 		Board findBoard = boardService.getBoardBySeq(seq);
 		
@@ -63,7 +63,7 @@ public class BoardController {
 		return "board/getBoard";
 	}
 	
-	@PostMapping(value = "/boards")
+	@PostMapping
 	public String registBoard(Board board, @AuthenticationPrincipal SecurityUser principal) {
 		board.setMember(principal.getMember());
 		boardService.insertBoard(board);
@@ -92,14 +92,7 @@ public class BoardController {
 		return "forward:getBoardList";
 	}
 	
-	@GetMapping(value = "/deleteBoard") 
-	public String deleteBoard(Board board) {
-		boardService.deleteBoard(board);
-		
-		return "forward:getBoardList";
-	}
-	
-	@PostMapping(value = "/boards/{boardNo}/delete")
+	@PostMapping(value = "/{boardNo}/delete")
 	public String deleteBoardByNo(Board board) {
 		boardService.deleteBoard(board);
 	
